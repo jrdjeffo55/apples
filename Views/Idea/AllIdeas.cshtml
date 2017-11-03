@@ -1,0 +1,49 @@
+@model apple.Models.IdeaViewModel
+@{
+    ViewData["Title"] = "All Ideas";
+}
+<a asp-area="" asp-controller="Home" asp-action="Index">Logout</a>
+<br>
+<h2>Hi @ViewBag.User.Alias!</h2>
+<hr>
+<form asp-controller="Idea" asp-action="AddIdea" method="post">
+    <em class="error">@ViewBag.Error</em><br>
+    <textarea asp-for="Content" rows="4" cols="60" placeholder="Say something witty here..."></textarea>
+    <button type="submit">Idea!</button>
+</form>
+<hr>
+<ul style="list-style-type:none">
+    @foreach(var idea in @ViewBag.AllIdeas)
+    {
+        bool checklike = false;
+        <li>
+            <p><a href="userdetails/@idea.UserId">@idea.User.Alias</a> says:</p>
+            <p>@idea.Content</p>
+            <p>@if(idea.UserId == @ViewBag.User.Id)
+                {
+                    <a href="allideas/delete/@idea.Id">Delete</a>
+                }
+                else
+                {
+                    @foreach(var like in @idea.Likes)
+                    {
+                        @if(like.UserId == ViewBag.User.Id)
+                        {
+                            checklike = true;
+                        }
+                    }
+                    @if(checklike)
+                    {
+                        <img src="images/thumbsup.gif" alt="liked">
+                        <!-- <a style="color:green;">Liked</a> -->
+                    }
+                    else
+                    {
+                        <a href="allideas/like/@idea.Id">Like</a>
+                    }
+                }
+                &nbsp;&nbsp;&nbsp;<a href="ideadetails/@idea.Id">@idea.Likes.Count people</a>&nbsp; like this.</p>
+        </li>
+        <br><br>
+    }
+</ul>

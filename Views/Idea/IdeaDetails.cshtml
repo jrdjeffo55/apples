@@ -1,0 +1,25 @@
+@{
+    ViewData["Title"] = "Idea Details";
+}
+<a asp-area="" asp-action="allideas">Home</a>
+<a asp-area="" asp-action="Index">Logout</a>
+<br>
+<h2>Idea Details</h2>
+<br>
+<p><a href="grabuser/@ViewBag.Idea.User.Id">@ViewBag.Idea.User.Alias</a> says:</p>
+<p>@ViewBag.Idea.Content</p>
+<hr>
+<strong>People who liked this Post:</strong>
+<table>
+    <tr>
+        <th>&nbsp; Alias &nbsp;</th>
+        <th>&nbsp; Name &nbsp;</th>
+    </tr>
+    @foreach(var like in @ViewBag.Idea.Likes)
+    {
+        <tr>
+            <td>&nbsp; <a href="grabuser/@like.User.Id">@like.User.Alias</a> &nbsp;</td>
+            <td>&nbsp; @like.User.Name &nbsp;</td>
+        </tr>
+    }
+</table>

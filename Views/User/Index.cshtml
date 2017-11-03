@@ -1,0 +1,42 @@
+@model apple.Models.RegisterViewModel
+@{
+    ViewData["Title"] = "Home";
+}
+<h1>Welcome!</h1>
+<h3>Registration</h3>
+<em class="error"><span>@ViewBag.Temp</span></em>
+<form asp-controller="User" asp-action="Register" method="post">
+    <em class="error"><span>@ViewBag.Exists</span></em>
+    <em class="error"><span asp-validation-for="Name"></span></em><br>
+    <label asp-for="Name"></label>
+    <input asp-for="Name">
+    <br>
+    <em class="error"><span asp-validation-for="Alias"></span></em><br>
+    <label asp-for="Alias"></label>
+    <input asp-for="Alias">
+    <br>
+    <em class="error"><span asp-validation-for="Email"></span></em><br>
+    <label asp-for="Email"></label>
+    <input asp-for="Email">
+    <br>
+    <em class="error"><span asp-validation-for="Password"></span></em><br>
+    <label asp-for="Password"></label>
+    <input asp-for="Password">
+    <br>
+    <em class="error"><span asp-validation-for="Confirm"></span></em><br>
+    <label asp-for="Confirm"></label>
+    <input asp-for="Confirm">
+    <br><br>
+    <button type="submit">Register</button>
+</form>
+<h3>Login</h3>
+<form action="login" method="post">
+    <em class="error">@ViewBag.Error</em><br>
+    <label for="email">Email: </label>
+    <input type="text" name="email">
+    <br><br>
+    <label for="password">Password: </label>
+    <input type="password" name="password">
+    <br><br>
+    <button type="submit">Login</button>
+</form>

@@ -1,0 +1,14 @@
+@{
+    ViewData["Title"] = "User Details";
+}
+<a asp-area="" asp-action="allideas">Home</a>
+<a asp-area="" asp-action="Index">Logout</a>
+<br>
+<h2>User Details</h2>
+<br>
+<h4>Name: @ViewBag.User.Name</h4>
+<h4>Alias: @ViewBag.User.Alias</h4>
+<h4>Email: @ViewBag.User.Email</h4>
+<hr>
+<p>Total Number of Posts: @ViewBag.User.Ideas.Count</p>
+<p>Total Number of Likes: @ViewBag.User.Likes.Count</p>
